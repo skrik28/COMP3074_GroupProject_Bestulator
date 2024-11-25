@@ -8,15 +8,15 @@
     <!-- Second Activity Menu Item -->
     <item
         android:id="@+id/navigation_second_activity"
-        android:title="Second Activity" />
+        android:title="Dashboard" />
 
     <!-- Third Activity Menu Item -->
     <item
         android:id="@+id/navigation_third_activity"
-        android:title="Third Activity" />
+        android:title="Create Project" />
 
     <!-- Fourth Activity Menu Item -->
     <item
         android:id="@+id/navigation_fourth_activity"
-        android:title="Fourth Activity" />
+        android:title="View Projects" />
 </menu>

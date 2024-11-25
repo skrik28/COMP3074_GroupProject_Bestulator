@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // Set a title for the Toolbar
-        // getSupportActionBar().setTitle("Main Activity");
+        getSupportActionBar().setTitle("Home");
 
 
 //        EdgeToEdge.enable(this);
@@ -44,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-//
+
 //    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 //        switch (item.getItemId()) {
 //            case R.id.navigation_home:
 //                startActivity(new Intent(MainActivity.this, MainActivity.class));
