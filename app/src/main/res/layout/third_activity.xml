@@ -17,4 +17,124 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:layout_marginBottom="13dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:text="Create new project" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:width="350dp"
+        android:layout_marginStart="25dp"
+        android:inputType="text"
+        android:text="Project Name" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:width="350dp"
+        android:layout_marginStart="25dp"
+        android:inputType="text"
+        android:text="City" />
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:width="350dp"
+        android:layout_marginStart="25dp"
+        android:inputType="text"
+        android:text="State" />
+
+    <EditText
+        android:id="@+id/editText6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:width="350dp"
+        android:layout_marginStart="25dp"
+        android:inputType="text"
+        android:text="Client Name" />
+
+    <EditText
+        android:id="@+id/editText7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:width="350dp"
+        android:layout_marginStart="25dp"
+        android:inputType="text"
+        android:text="Phone" />
+
+    <EditText
+        android:id="@+id/editText8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:width="350dp"
+        android:layout_marginStart="25dp"
+        android:inputType="text"
+        android:text="Email" />
+
+    <EditText
+        android:id="@+id/editText9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:width="350dp"
+        android:layout_marginStart="25dp"
+        android:inputType="text"
+        android:text="Start Date" />
+
+    <EditText
+        android:id="@+id/editText10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:width="350dp"
+        android:layout_marginStart="25dp"
+        android:inputType="text"
+        android:text="End Date" />
+
+    <EditText
+        android:id="@+id/editText11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:width="350dp"
+        android:layout_marginStart="25dp"
+        android:inputType="text"
+        android:text="Category" />
+
+    <EditText
+        android:id="@+id/editText12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:width="350dp"
+        android:layout_marginStart="25dp"
+        android:inputType="text"
+        android:text="Budget" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="250dp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:text="Create" />
+
 </LinearLayout>
