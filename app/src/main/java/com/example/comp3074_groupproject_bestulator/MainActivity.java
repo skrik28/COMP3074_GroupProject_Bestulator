@@ -96,4 +96,14 @@ public class MainActivity extends AppCompatActivity {
             return super.onOptionsItemSelected(item);
         }
     }
+
+    public void goToDashboard(View v) {
+
+        Button goToDashboard = (Button) v;
+        goToDashboard.setText("changing...");
+
+        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+
+        startActivity(intent);
+    }
 }

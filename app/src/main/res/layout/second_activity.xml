@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_second_activity"
@@ -22,8 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-</LinearLayout>
-=======
+
 
     <TextView
         android:id="@+id/textView"
@@ -50,14 +49,14 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView"
-        app:layout_marginTop="20dp" />
+         />
 
     <Button
         android:id="@+id/buttonCreateProject"
         android:layout_width="191dp"
         android:layout_height="53dp"
         android:layout_marginTop="432dp"
-        android:onClick="goToDashboard"
+        android:onClick="goToCreateProject"
         android:text="Create New Project"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +67,7 @@
         android:layout_width="191dp"
         android:layout_height="53dp"
         android:layout_marginTop="8dp"
-        android:onClick="goToDashboard"
+        android:onClick="goToViewProjects"
         android:text="View Projects"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
