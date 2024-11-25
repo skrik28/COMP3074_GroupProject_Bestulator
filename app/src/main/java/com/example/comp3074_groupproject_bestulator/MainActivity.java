@@ -46,23 +46,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.navigation_home:
-//                startActivity(new Intent(MainActivity.this, MainActivity.class));
-//                return true;
-//            case R.id.navigation_second_activity:
-//                startActivity(new Intent(MainActivity.this, SecondActivity.class));
-//                return true;
-//            case R.id.navigation_third_activity:
-//                startActivity(new Intent(MainActivity.this, ThirdActivity.class));
-//                return true;
-//            case R.id.navigation_fourth_activity:
-//                startActivity(new Intent(MainActivity.this, FourthActivity.class));
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.navigation_home:
+                startActivity(new Intent(MainActivity.this, MainActivity.class));
+                return true;
+            case R.id.navigation_second_activity:
+                startActivity(new Intent(MainActivity.this, SecondActivity.class));
+                return true;
+            case R.id.navigation_third_activity:
+                startActivity(new Intent(MainActivity.this, ThirdActivity.class));
+                return true;
+            case R.id.navigation_fourth_activity:
+                startActivity(new Intent(MainActivity.this, FourthActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
