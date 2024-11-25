@@ -31,7 +31,7 @@ public class FourthActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // Set a title for the Toolbar
-        getSupportActionBar().setTitle("Fourth");
+        getSupportActionBar().setTitle("View Projects");
     }
 
     @Override

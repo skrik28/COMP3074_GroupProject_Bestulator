@@ -31,7 +31,7 @@ public class ThirdActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // Set a title for the Toolbar
-        getSupportActionBar().setTitle("Third");
+        getSupportActionBar().setTitle("Create Project");
     }
 
     @Override

@@ -31,7 +31,7 @@ public class SecondActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // Set a title for the Toolbar
-        getSupportActionBar().setTitle("Second");
+        getSupportActionBar().setTitle("Dashboard");
     }
 
     @Override
