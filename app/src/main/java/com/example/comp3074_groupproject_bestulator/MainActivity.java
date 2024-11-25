@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
 //    @Override
 //    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 //
@@ -69,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
 //                return super.onOptionsItemSelected(item);
 //        }
 //    }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

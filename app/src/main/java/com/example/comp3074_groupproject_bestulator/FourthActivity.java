@@ -40,6 +40,7 @@ public class FourthActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // Set a title for the Toolbar
+
         getSupportActionBar().setTitle("Projects");
 
         // Hardcoded list projects
@@ -67,6 +68,7 @@ public class FourthActivity extends AppCompatActivity {
         listView = findViewById(R.id.listView);
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, existingProjects);
         listView.setAdapter(adapter);
+
     }
 
     @Override
