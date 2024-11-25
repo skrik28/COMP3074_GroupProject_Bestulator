@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -13,7 +15,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FourthActivity extends AppCompatActivity {
+
+    private ListView listView;
+    private List<String> existingProjects = new ArrayList<>();
+    private ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +40,33 @@ public class FourthActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // Set a title for the Toolbar
-        getSupportActionBar().setTitle("View Projects");
+        getSupportActionBar().setTitle("Projects");
+
+        // Hardcoded list projects
+        existingProjects.add("Kitchen Renovation - Smith Residence");
+        existingProjects.add("Bathroom Remodel - Johnson Home");
+        existingProjects.add("Office Space Renovation - ABC Corp");
+        existingProjects.add("New Roof Installation - Parker House");
+        existingProjects.add("Basement Finishing - Locke Family");
+        existingProjects.add("Living Room Expansion - Williams Apartment");
+        existingProjects.add("Custom Deck Construction - Miller Estate");
+        existingProjects.add("Garage Conversion - Anderson Villa");
+        existingProjects.add("Full House Remodeling - Taylor Residence");
+        existingProjects.add("Swimming Pool Installation - Harris Manor");
+        existingProjects.add("Kitchen Renovation - Smith Residence");
+        existingProjects.add("Bathroom Remodel - Johnson Home");
+        existingProjects.add("Office Space Renovation - ABC Corp");
+        existingProjects.add("New Roof Installation - Parker House");
+        existingProjects.add("Basement Finishing - Locke Family");
+        existingProjects.add("Living Room Expansion - Williams Apartment");
+        existingProjects.add("Custom Deck Construction - Miller Estate");
+        existingProjects.add("Garage Conversion - Anderson Villa");
+        existingProjects.add("Full House Remodeling - Taylor Residence");
+        existingProjects.add("Swimming Pool Installation - Harris Manor");
+
+        listView = findViewById(R.id.listView);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, existingProjects);
+        listView.setAdapter(adapter);
     }
 
     @Override
