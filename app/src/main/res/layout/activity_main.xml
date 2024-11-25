@@ -33,6 +33,7 @@
 
     <Button
         android:id="@+id/buttonHome"
+        android:onClick="goToDashboard"
         android:layout_width="191dp"
         android:layout_height="53dp"
         android:layout_marginTop="168dp"

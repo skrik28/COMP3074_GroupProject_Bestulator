@@ -13,6 +13,16 @@
         android:theme="@style/Theme.COMP3074_GroupProject_Bestulator"
         tools:targetApi="31">
         <activity
+            android:name=".FourthActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ThirdActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SecondActivity"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
