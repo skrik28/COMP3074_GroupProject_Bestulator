@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -61,5 +63,27 @@ public class SecondActivity extends AppCompatActivity {
         } else {
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void goToCreateProject(View v) {
+
+
+        Button goToCreateProject = (Button) v;
+        goToCreateProject.setText("changing...");
+
+        Intent intent = new Intent(SecondActivity.this, ThirdActivity.class);
+
+        startActivity(intent);
+    }
+
+    public void goToViewProjects(View v) {
+
+
+        Button goToViewProjects = (Button) v;
+        goToViewProjects.setText("changing...");
+
+        Intent intent = new Intent(SecondActivity.this, FourthActivity.class);
+
+        startActivity(intent);
     }
 }
