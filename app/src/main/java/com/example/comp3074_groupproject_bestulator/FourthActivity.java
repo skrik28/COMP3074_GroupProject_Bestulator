@@ -1,5 +1,6 @@
 package com.example.comp3074_groupproject_bestulator;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,9 +57,28 @@ public class FourthActivity extends AppCompatActivity implements ProjectAdapter.
         List<Project> projects = dbHelper.getAllProjects();
         if (adapter == null) {
             adapter = new ProjectAdapter(projects, this);
+            adapter.setOnDeleteClickListener(this::confirmDelete);
             recyclerView.setAdapter(adapter);
         } else {
             adapter.updateProjects(projects);
+        }
+    }
+
+    private void confirmDelete(Project project, int position) {
+        new AlertDialog.Builder(this)
+                .setTitle("Delete Project")
+                .setMessage("Are you sure you want to delete " + project.getProjectName() + "?")
+                .setPositiveButton("Delete", (dialog, which) -> deleteProject(project, position))
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    private void deleteProject(Project project, int position) {
+        if (dbHelper.deleteProject(project.getId())) {
+            adapter.removeProject(position);
+            Toast.makeText(this, "Project deleted", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Error deleting project", Toast.LENGTH_SHORT).show();
         }
     }
 

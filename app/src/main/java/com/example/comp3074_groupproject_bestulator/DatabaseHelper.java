@@ -109,4 +109,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return projectList;
     }
+
+    public boolean deleteProject(long projectId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_PROJECTS, COLUMN_ID + "=?",
+                new String[]{String.valueOf(projectId)}) > 0;
+    }
 }

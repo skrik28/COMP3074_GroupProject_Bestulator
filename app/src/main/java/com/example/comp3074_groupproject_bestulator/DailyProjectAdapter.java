@@ -3,59 +3,44 @@ package com.example.comp3074_groupproject_bestulator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
+import android.graphics.Color;
+import androidx.cardview.widget.CardView;
 import java.util.List;
 
-public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder> {
+public class DailyProjectAdapter extends RecyclerView.Adapter<DailyProjectAdapter.ProjectViewHolder> {
     private List<Project> projects;
     private OnProjectClickListener listener;
-    private OnDeleteClickListener deleteListener;
 
     public interface OnProjectClickListener {
         void onProjectClick(Project project);
     }
 
-    public interface OnDeleteClickListener {
-        void onDeleteClick(Project project, int position);
-    }
-
-    public ProjectAdapter(List<Project> projects, OnProjectClickListener listener) {
+    public DailyProjectAdapter(List<Project> projects, OnProjectClickListener listener) {
         this.projects = projects;
         this.listener = listener;
     }
 
-    public void setOnDeleteClickListener(OnDeleteClickListener listener) {
-        this.deleteListener = listener;
-    }
-
-    @NonNull
     @Override
-    public ProjectViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.project_item, parent, false);
+    public ProjectViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.project_list_item, parent, false);
         return new ProjectViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProjectViewHolder holder, int position) {
+    public void onBindViewHolder(ProjectViewHolder holder, int position) {
         Project project = projects.get(position);
         holder.projectNameText.setText(project.getProjectName());
         holder.clientNameText.setText(project.getClientName());
 
+        // Set category indicator color
+        int categoryColor = ProjectCalendarDecorator.getCategoryColor(project.getCategory());
+        holder.categoryIndicator.setBackgroundColor(categoryColor);
+
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onProjectClick(project);
-            }
-        });
-
-        holder.deleteButton.setOnClickListener(v -> {
-            if (deleteListener != null) {
-                deleteListener.onDeleteClick(project, position);
             }
         });
     }
@@ -70,22 +55,16 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
         notifyDataSetChanged();
     }
 
-    public void removeProject(int position) {
-        projects.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, projects.size());
-    }
-
     static class ProjectViewHolder extends RecyclerView.ViewHolder {
         TextView projectNameText;
         TextView clientNameText;
-        ImageButton deleteButton;
+        View categoryIndicator;
 
         ProjectViewHolder(View itemView) {
             super(itemView);
             projectNameText = itemView.findViewById(R.id.projectNameText);
             clientNameText = itemView.findViewById(R.id.clientNameText);
-            deleteButton = itemView.findViewById(R.id.deleteButton);
+            categoryIndicator = itemView.findViewById(R.id.categoryIndicator);
         }
     }
 }
