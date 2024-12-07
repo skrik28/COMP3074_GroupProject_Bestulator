@@ -28,7 +28,7 @@
         android:layout_marginTop="15dp"
         android:gravity="center"
         android:textSize="30sp"
-        android:text="Create new project" />
+        android:text="Create New Project" />
 
     <EditText
         android:id="@+id/editText2"
@@ -38,7 +38,8 @@
         android:width="350dp"
         android:layout_marginStart="25dp"
         android:inputType="text"
-        android:text="Project Name" />
+        android:text="Project Name"
+        android:hint="Project Name"/>
 
     <EditText
         android:id="@+id/editText3"
@@ -48,7 +49,8 @@
         android:width="350dp"
         android:layout_marginStart="25dp"
         android:inputType="text"
-        android:text="City" />
+        android:text="City"
+        android:hint="City"/>
 
     <EditText
         android:id="@+id/editText4"
@@ -58,7 +60,8 @@
         android:width="350dp"
         android:layout_marginStart="25dp"
         android:inputType="text"
-        android:text="State" />
+        android:text="State"
+        android:hint="State"/>
 
     <EditText
         android:id="@+id/editText6"
@@ -68,7 +71,8 @@
         android:width="350dp"
         android:layout_marginStart="25dp"
         android:inputType="text"
-        android:text="Client Name" />
+        android:text="Client Name"
+        android:hint="Client Name"/>
 
     <EditText
         android:id="@+id/editText7"
@@ -78,7 +82,8 @@
         android:width="350dp"
         android:layout_marginStart="25dp"
         android:inputType="text"
-        android:text="Phone" />
+        android:text="Phone"
+        android:hint="Phone"/>
 
     <EditText
         android:id="@+id/editText8"
@@ -88,7 +93,8 @@
         android:width="350dp"
         android:layout_marginStart="25dp"
         android:inputType="text"
-        android:text="Email" />
+        android:text="Email"
+        android:hint="Email"/>
 
     <EditText
         android:id="@+id/editText9"
@@ -98,7 +104,8 @@
         android:width="350dp"
         android:layout_marginStart="25dp"
         android:inputType="text"
-        android:text="Start Date" />
+        android:text="Start Date"
+        android:hint="Start Date"/>
 
     <EditText
         android:id="@+id/editText10"
@@ -108,7 +115,8 @@
         android:width="350dp"
         android:layout_marginStart="25dp"
         android:inputType="text"
-        android:text="End Date" />
+        android:text="End Date"
+        android:hint="End Date"/>
 
     <EditText
         android:id="@+id/editText11"
@@ -118,7 +126,8 @@
         android:width="350dp"
         android:layout_marginStart="25dp"
         android:inputType="text"
-        android:text="Category" />
+        android:text="Category"
+        android:hint="Category"/>
 
     <EditText
         android:id="@+id/editText12"
@@ -128,7 +137,8 @@
         android:width="350dp"
         android:layout_marginStart="25dp"
         android:inputType="text"
-        android:text="Budget" />
+        android:text="Budget"
+        android:hint="Budget"/>
 
     <Button
         android:id="@+id/button"

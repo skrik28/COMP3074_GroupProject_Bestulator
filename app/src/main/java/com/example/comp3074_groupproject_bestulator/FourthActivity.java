@@ -1,86 +1,111 @@
 package com.example.comp3074_groupproject_bestulator;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
-public class FourthActivity extends AppCompatActivity {
-
-    private ListView listView;
-    private List<String> existingProjects = new ArrayList<>();
-    private ArrayAdapter<String> adapter;
+public class FourthActivity extends AppCompatActivity implements ProjectAdapter.OnProjectClickListener {
+    private DatabaseHelper dbHelper;
+    private ProjectAdapter adapter;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.fourth_activity);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.navigation_fourth_activity), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
-        // Set up the toolbar as the Action Bar
+        // Set up the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Project List");
 
-        // Set a title for the Toolbar
+        // Initialize DatabaseHelper
+        dbHelper = new DatabaseHelper(this);
 
-        getSupportActionBar().setTitle("Projects");
+        // Set up RecyclerView
+        recyclerView = findViewById(R.id.projectRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Hardcoded list projects
-        existingProjects.add("Kitchen Renovation - Smith Residence");
-        existingProjects.add("Bathroom Remodel - Johnson Home");
-        existingProjects.add("Office Space Renovation - ABC Corp");
-        existingProjects.add("New Roof Installation - Parker House");
-        existingProjects.add("Basement Finishing - Locke Family");
-        existingProjects.add("Living Room Expansion - Williams Apartment");
-        existingProjects.add("Custom Deck Construction - Miller Estate");
-        existingProjects.add("Garage Conversion - Anderson Villa");
-        existingProjects.add("Full House Remodeling - Taylor Residence");
-        existingProjects.add("Swimming Pool Installation - Harris Manor");
-        existingProjects.add("Kitchen Renovation - Smith Residence");
-        existingProjects.add("Bathroom Remodel - Johnson Home");
-        existingProjects.add("Office Space Renovation - ABC Corp");
-        existingProjects.add("New Roof Installation - Parker House");
-        existingProjects.add("Basement Finishing - Locke Family");
-        existingProjects.add("Living Room Expansion - Williams Apartment");
-        existingProjects.add("Custom Deck Construction - Miller Estate");
-        existingProjects.add("Garage Conversion - Anderson Villa");
-        existingProjects.add("Full House Remodeling - Taylor Residence");
-        existingProjects.add("Swimming Pool Installation - Harris Manor");
+        // Load and display projects
+        loadProjects();
+    }
 
-        listView = findViewById(R.id.listView);
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, existingProjects);
-        listView.setAdapter(adapter);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadProjects(); // Reload projects when activity resumes
+    }
 
+    private void loadProjects() {
+        List<Project> projects = dbHelper.getAllProjects();
+        if (adapter == null) {
+            adapter = new ProjectAdapter(projects, this);
+            recyclerView.setAdapter(adapter);
+        } else {
+            adapter.updateProjects(projects);
+        }
+    }
+
+    @Override
+    public void onProjectClick(Project project) {
+        showProjectDetails(project);
+    }
+
+    private void showProjectDetails(Project project) {
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.project_details_dialog);
+
+        // Initialize views
+        TextView projectNameTitle = dialog.findViewById(R.id.projectNameTitle);
+        TextView locationText = dialog.findViewById(R.id.locationText);
+        TextView clientDetailsText = dialog.findViewById(R.id.clientDetailsText);
+        TextView contactText = dialog.findViewById(R.id.contactText);
+        TextView datesText = dialog.findViewById(R.id.datesText);
+        TextView categoryText = dialog.findViewById(R.id.categoryText);
+        TextView budgetText = dialog.findViewById(R.id.budgetText);
+        Button closeButton = dialog.findViewById(R.id.closeButton);
+
+        // Set values
+        projectNameTitle.setText(project.getProjectName());
+        locationText.setText(String.format("Location: %s, %s", project.getCity(), project.getState()));
+        clientDetailsText.setText(String.format("Client: %s", project.getClientName()));
+        contactText.setText(String.format("Contact: %s\n%s", project.getPhone(), project.getEmail()));
+        datesText.setText(String.format("Duration: %s - %s", project.getStartDate(), project.getEndDate()));
+        categoryText.setText(String.format("Category: %s", project.getCategory()));
+
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.US);
+        budgetText.setText(String.format("Budget: %s", currencyFormat.format(project.getBudget())));
+
+        // Set up close button
+        closeButton.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.show();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu from XML
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
         int id = item.getItemId();
 
         if (id == R.id.navigation_home) {
@@ -95,8 +120,7 @@ public class FourthActivity extends AppCompatActivity {
         } else if (id == R.id.navigation_fourth_activity) {
             startActivity(new Intent(FourthActivity.this, FourthActivity.class));
             return true;
-        } else {
-            return super.onOptionsItemSelected(item);
         }
+        return super.onOptionsItemSelected(item);
     }
 }

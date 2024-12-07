@@ -1,5 +1,6 @@
 package com.example.comp3074_groupproject_bestulator;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,16 +17,27 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class ThirdActivity extends AppCompatActivity {
     private EditText projectNameEdit, cityEdit, stateEdit, clientNameEdit, phoneEdit,
             emailEdit, startDateEdit, endDateEdit, categoryEdit, budgetEdit;
     private DatabaseHelper dbHelper;
+    private Calendar startCalendar, endCalendar;
+    private SimpleDateFormat dateFormatter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.third_activity);
+
+        // Initialize calendars and date formatter
+        startCalendar = Calendar.getInstance();
+        endCalendar = Calendar.getInstance();
+        dateFormatter = new SimpleDateFormat("MMM dd, yyyy", Locale.US);
 
         // Initialize DatabaseHelper
         dbHelper = new DatabaseHelper(this);
@@ -45,6 +57,9 @@ public class ThirdActivity extends AppCompatActivity {
         // Clear default text
         clearDefaultText();
 
+        // Set up date pickers
+        setupDatePickers();
+
         // Set up the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -62,6 +77,62 @@ public class ThirdActivity extends AppCompatActivity {
         createButton.setOnClickListener(v -> createProject());
     }
 
+    private void setupDatePickers() {
+        // Make date EditTexts non-editable but clickable
+        startDateEdit.setFocusable(false);
+        endDateEdit.setFocusable(false);
+
+        // Create date picker dialogs
+        DatePickerDialog.OnDateSetListener startDateListener = (view, year, month, day) -> {
+            startCalendar.set(Calendar.YEAR, year);
+            startCalendar.set(Calendar.MONTH, month);
+            startCalendar.set(Calendar.DAY_OF_MONTH, day);
+            startDateEdit.setText(dateFormatter.format(startCalendar.getTime()));
+
+            // Update end date minimum to start date
+            endCalendar.setTimeInMillis(Math.max(endCalendar.getTimeInMillis(), startCalendar.getTimeInMillis()));
+            endDateEdit.setText(dateFormatter.format(endCalendar.getTime()));
+        };
+
+        DatePickerDialog.OnDateSetListener endDateListener = (view, year, month, day) -> {
+            endCalendar.set(Calendar.YEAR, year);
+            endCalendar.set(Calendar.MONTH, month);
+            endCalendar.set(Calendar.DAY_OF_MONTH, day);
+            endDateEdit.setText(dateFormatter.format(endCalendar.getTime()));
+        };
+
+        // Set click listeners for date fields
+        startDateEdit.setOnClickListener(v -> {
+            DatePickerDialog dialog = new DatePickerDialog(
+                    ThirdActivity.this,
+                    startDateListener,
+                    startCalendar.get(Calendar.YEAR),
+                    startCalendar.get(Calendar.MONTH),
+                    startCalendar.get(Calendar.DAY_OF_MONTH)
+            );
+            // Set minimum date to today
+            dialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+            dialog.show();
+        });
+
+        endDateEdit.setOnClickListener(v -> {
+            DatePickerDialog dialog = new DatePickerDialog(
+                    ThirdActivity.this,
+                    endDateListener,
+                    endCalendar.get(Calendar.YEAR),
+                    endCalendar.get(Calendar.MONTH),
+                    endCalendar.get(Calendar.DAY_OF_MONTH)
+            );
+            // Set minimum date to start date
+            dialog.getDatePicker().setMinDate(startCalendar.getTimeInMillis());
+            dialog.show();
+        });
+
+        // Set initial dates
+        startDateEdit.setText(dateFormatter.format(startCalendar.getTime()));
+        endDateEdit.setText(dateFormatter.format(endCalendar.getTime()));
+    }
+
     private void clearDefaultText() {
         projectNameEdit.setText("");
         cityEdit.setText("");
@@ -69,10 +140,9 @@ public class ThirdActivity extends AppCompatActivity {
         clientNameEdit.setText("");
         phoneEdit.setText("");
         emailEdit.setText("");
-        startDateEdit.setText("");
-        endDateEdit.setText("");
         categoryEdit.setText("");
         budgetEdit.setText("");
+        // Don't clear dates - they'll be set by the date picker
     }
 
     private void createProject() {
@@ -135,10 +205,14 @@ public class ThirdActivity extends AppCompatActivity {
         clientNameEdit.setText("");
         phoneEdit.setText("");
         emailEdit.setText("");
-        startDateEdit.setText("");
-        endDateEdit.setText("");
         categoryEdit.setText("");
         budgetEdit.setText("");
+
+        // Reset dates to today
+        startCalendar = Calendar.getInstance();
+        endCalendar = Calendar.getInstance();
+        startDateEdit.setText(dateFormatter.format(startCalendar.getTime()));
+        endDateEdit.setText(dateFormatter.format(endCalendar.getTime()));
     }
 
     // Your existing menu methods...
