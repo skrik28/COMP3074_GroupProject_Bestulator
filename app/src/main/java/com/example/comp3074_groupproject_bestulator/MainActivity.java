@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
     public void goToDashboard(View v) {
 
         Button goToDashboard = (Button) v;
-        goToDashboard.setText("changing...");
+        goToDashboard.setText("loading Dashboard...");
 
         Intent intent = new Intent(MainActivity.this, SecondActivity.class);
 
