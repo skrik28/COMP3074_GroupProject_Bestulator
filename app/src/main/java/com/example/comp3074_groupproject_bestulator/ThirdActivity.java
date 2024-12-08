@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -24,6 +26,7 @@ import java.util.Locale;
 public class ThirdActivity extends AppCompatActivity {
     private EditText projectNameEdit, cityEdit, stateEdit, clientNameEdit, phoneEdit,
             emailEdit, startDateEdit, endDateEdit, categoryEdit, budgetEdit;
+    private Spinner categorySpinner;
     private DatabaseHelper dbHelper;
     private Calendar startCalendar, endCalendar;
     private SimpleDateFormat dateFormatter;
@@ -51,8 +54,10 @@ public class ThirdActivity extends AppCompatActivity {
         emailEdit = findViewById(R.id.editText8);
         startDateEdit = findViewById(R.id.editText9);
         endDateEdit = findViewById(R.id.editText10);
-        categoryEdit = findViewById(R.id.editText11);
         budgetEdit = findViewById(R.id.editText12);
+
+        // Initialize and setup Spinner
+        setupCategorySpinner();
 
         // Clear default text
         clearDefaultText();
@@ -75,6 +80,103 @@ public class ThirdActivity extends AppCompatActivity {
         // Set up create button
         Button createButton = findViewById(R.id.button);
         createButton.setOnClickListener(v -> createProject());
+    }
+
+    private void setupCategorySpinner() {
+        try {
+            categorySpinner = findViewById(R.id.categorySpinner);
+            String[] categories = {"Construction", "Renovation", "Design", "Maintenance"};
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                    this,
+                    android.R.layout.simple_spinner_item,
+                    categories
+            );
+
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            categorySpinner.setAdapter(adapter);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Error setting up category spinner", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void clearDefaultText() {
+        projectNameEdit.setText("");
+        cityEdit.setText("");
+        stateEdit.setText("");
+        clientNameEdit.setText("");
+        phoneEdit.setText("");
+        emailEdit.setText("");
+        categorySpinner.setSelection(0);
+        budgetEdit.setText("");
+    }
+
+    private void createProject() {
+        // Validate input
+        if (!validateInput()) {
+            return;
+        }
+
+        try {
+            // Create new project object
+            Project project = new Project(
+                    projectNameEdit.getText().toString(),
+                    cityEdit.getText().toString(),
+                    stateEdit.getText().toString(),
+                    clientNameEdit.getText().toString(),
+                    phoneEdit.getText().toString(),
+                    emailEdit.getText().toString(),
+                    startDateEdit.getText().toString(),
+                    endDateEdit.getText().toString(),
+                    categorySpinner.getSelectedItem().toString(),
+                    Double.parseDouble(budgetEdit.getText().toString())
+            );
+
+            // Save to database
+            long id = dbHelper.addProject(project);
+
+            if (id != -1) {
+                Toast.makeText(this, "Project created successfully!", Toast.LENGTH_SHORT).show();
+                // Navigate back to project list or clear form
+                clearForm();
+            } else {
+                Toast.makeText(this, "Error creating project", Toast.LENGTH_SHORT).show();
+            }
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, "Please enter a valid budget amount", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private boolean validateInput() {
+        if (projectNameEdit.getText().toString().trim().isEmpty()) {
+            projectNameEdit.setError("Project name is required");
+            return false;
+        }
+        if (clientNameEdit.getText().toString().trim().isEmpty()) {
+            clientNameEdit.setError("Client name is required");
+            return false;
+        }
+        if (budgetEdit.getText().toString().trim().isEmpty()) {
+            budgetEdit.setError("Budget is required");
+            return false;
+        }
+        return true;
+    }
+
+    private void clearForm() {
+        projectNameEdit.setText("");
+        cityEdit.setText("");
+        stateEdit.setText("");
+        clientNameEdit.setText("");
+        phoneEdit.setText("");
+        emailEdit.setText("");
+        startCalendar = Calendar.getInstance();
+        endCalendar = Calendar.getInstance();
+        startDateEdit.setText(dateFormatter.format(startCalendar.getTime()));
+        endDateEdit.setText(dateFormatter.format(endCalendar.getTime()));
+        categorySpinner.setSelection(0);
+        budgetEdit.setText("");
     }
 
     private void setupDatePickers() {
@@ -133,89 +235,6 @@ public class ThirdActivity extends AppCompatActivity {
         endDateEdit.setText(dateFormatter.format(endCalendar.getTime()));
     }
 
-    private void clearDefaultText() {
-        projectNameEdit.setText("");
-        cityEdit.setText("");
-        stateEdit.setText("");
-        clientNameEdit.setText("");
-        phoneEdit.setText("");
-        emailEdit.setText("");
-        categoryEdit.setText("");
-        budgetEdit.setText("");
-        // Don't clear dates - they'll be set by the date picker
-    }
-
-    private void createProject() {
-        // Validate input
-        if (!validateInput()) {
-            return;
-        }
-
-        try {
-            // Create new project object
-            Project project = new Project(
-                    projectNameEdit.getText().toString(),
-                    cityEdit.getText().toString(),
-                    stateEdit.getText().toString(),
-                    clientNameEdit.getText().toString(),
-                    phoneEdit.getText().toString(),
-                    emailEdit.getText().toString(),
-                    startDateEdit.getText().toString(),
-                    endDateEdit.getText().toString(),
-                    categoryEdit.getText().toString(),
-                    Double.parseDouble(budgetEdit.getText().toString())
-            );
-
-            // Save to database
-            long id = dbHelper.addProject(project);
-
-            if (id != -1) {
-                Toast.makeText(this, "Project created successfully!", Toast.LENGTH_SHORT).show();
-                // Navigate back to project list or clear form
-                clearForm();
-            } else {
-                Toast.makeText(this, "Error creating project", Toast.LENGTH_SHORT).show();
-            }
-        } catch (NumberFormatException e) {
-            Toast.makeText(this, "Please enter a valid budget amount", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private boolean validateInput() {
-        if (projectNameEdit.getText().toString().trim().isEmpty()) {
-            projectNameEdit.setError("Project name is required");
-            return false;
-        }
-        if (clientNameEdit.getText().toString().trim().isEmpty()) {
-            clientNameEdit.setError("Client name is required");
-            return false;
-        }
-        if (budgetEdit.getText().toString().trim().isEmpty()) {
-            budgetEdit.setError("Budget is required");
-            return false;
-        }
-        // Add more validation as needed
-        return true;
-    }
-
-    private void clearForm() {
-        projectNameEdit.setText("");
-        cityEdit.setText("");
-        stateEdit.setText("");
-        clientNameEdit.setText("");
-        phoneEdit.setText("");
-        emailEdit.setText("");
-        categoryEdit.setText("");
-        budgetEdit.setText("");
-
-        // Reset dates to today
-        startCalendar = Calendar.getInstance();
-        endCalendar = Calendar.getInstance();
-        startDateEdit.setText(dateFormatter.format(startCalendar.getTime()));
-        endDateEdit.setText(dateFormatter.format(endCalendar.getTime()));
-    }
-
-    // Your existing menu methods...
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);

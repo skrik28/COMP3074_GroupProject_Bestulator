@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:title="Create Project"
+        android:title="@string/create_project"
 
         android:background="?attr/colorPrimary"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
@@ -28,7 +28,7 @@
         android:layout_marginTop="15dp"
         android:gravity="center"
         android:textSize="30sp"
-        android:text="Create New Project" />
+        android:text="@string/create_new_project" />
 
     <EditText
         android:id="@+id/editText2"
@@ -38,8 +38,8 @@
         android:width="350dp"
         android:layout_marginStart="25dp"
         android:inputType="text"
-        android:text="Project Name"
-        android:hint="Project Name"/>
+        android:text="@string/project_name"
+        android:hint="@string/project_name"/>
 
     <EditText
         android:id="@+id/editText3"
@@ -49,8 +49,8 @@
         android:width="350dp"
         android:layout_marginStart="25dp"
         android:inputType="text"
-        android:text="City"
-        android:hint="City"/>
+        android:text="@string/city"
+        android:hint="@string/city"/>
 
     <EditText
         android:id="@+id/editText4"
@@ -60,8 +60,8 @@
         android:width="350dp"
         android:layout_marginStart="25dp"
         android:inputType="text"
-        android:text="State"
-        android:hint="State"/>
+        android:text="@string/state"
+        android:hint="@string/state"/>
 
     <EditText
         android:id="@+id/editText6"
@@ -71,8 +71,8 @@
         android:width="350dp"
         android:layout_marginStart="25dp"
         android:inputType="text"
-        android:text="Client Name"
-        android:hint="Client Name"/>
+        android:text="@string/client_name"
+        android:hint="@string/client_name"/>
 
     <EditText
         android:id="@+id/editText7"
@@ -82,8 +82,8 @@
         android:width="350dp"
         android:layout_marginStart="25dp"
         android:inputType="text"
-        android:text="Phone"
-        android:hint="Phone"/>
+        android:text="@string/phone"
+        android:hint="@string/phone"/>
 
     <EditText
         android:id="@+id/editText8"
@@ -93,8 +93,8 @@
         android:width="350dp"
         android:layout_marginStart="25dp"
         android:inputType="text"
-        android:text="Email"
-        android:hint="Email"/>
+        android:text="@string/email"
+        android:hint="@string/email"/>
 
     <EditText
         android:id="@+id/editText9"
@@ -104,8 +104,8 @@
         android:width="350dp"
         android:layout_marginStart="25dp"
         android:inputType="text"
-        android:text="Start Date"
-        android:hint="Start Date"/>
+        android:text="@string/start_date"
+        android:hint="@string/start_date"/>
 
     <EditText
         android:id="@+id/editText10"
@@ -115,19 +115,26 @@
         android:width="350dp"
         android:layout_marginStart="25dp"
         android:inputType="text"
-        android:text="End Date"
-        android:hint="End Date"/>
+        android:text="@string/end_date"
+        android:hint="@string/end_date"/>
 
-    <EditText
+    <TextView
         android:id="@+id/editText11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:width="350dp"
         android:layout_marginStart="25dp"
-        android:inputType="text"
-        android:text="Category"
-        android:hint="Category"/>
+        android:layout_marginTop="8dp"
+        android:text="@string/category"
+        android:textSize="14sp" />
+
+    <Spinner
+        android:id="@+id/categorySpinner"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/editText12"
@@ -137,8 +144,8 @@
         android:width="350dp"
         android:layout_marginStart="25dp"
         android:inputType="text"
-        android:text="Budget"
-        android:hint="Budget"/>
+        android:text="@string/budget"
+        android:hint="@string/budget"/>
 
     <Button
         android:id="@+id/button"
@@ -147,6 +154,6 @@
         android:width="250dp"
         android:layout_marginTop="50dp"
         android:layout_gravity="center"
-        android:text="Create" />
+        android:text="@string/create" />
 
 </LinearLayout>
