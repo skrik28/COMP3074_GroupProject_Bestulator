@@ -68,7 +68,7 @@ public class ThirdActivity extends AppCompatActivity {
         // Set up the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Create Project");
+        getSupportActionBar().setTitle(R.string.create_project);
 
         // Set up window insets
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.navigation_third_activity), (v, insets) -> {

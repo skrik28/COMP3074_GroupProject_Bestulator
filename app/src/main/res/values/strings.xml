@@ -15,6 +15,8 @@
     <string name="budget">Budget</string>
     <string name="create">Create</string>
     <string name="project_list">Project List</string>
+    <string name="home_page">Home Page</string>
+    <string name="dashboard">Dashboard</string>
     <string-array name="project_categories">
         <item>Construction</item>
         <item>Renovation</item>
