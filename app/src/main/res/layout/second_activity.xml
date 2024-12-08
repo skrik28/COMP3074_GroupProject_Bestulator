@@ -20,7 +20,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Project Deadlines"
+        android:text="@string/project_deadlines"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
@@ -84,7 +84,7 @@
         android:layout_height="53dp"
         android:layout_marginBottom="8dp"
         android:onClick="goToCreateProject"
-        android:text="Create New Project"
+        android:text="@string/create_new_project"
         app:layout_constraintBottom_toTopOf="@+id/buttonViewProjects"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -95,7 +95,7 @@
         android:layout_height="53dp"
         android:layout_marginBottom="16dp"
         android:onClick="goToViewProjects"
-        android:text="View Projects"
+        android:text="@string/view_projects"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

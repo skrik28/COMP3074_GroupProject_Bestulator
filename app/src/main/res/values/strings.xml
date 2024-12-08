@@ -17,6 +17,8 @@
     <string name="project_list">Project List</string>
     <string name="home_page">Home Page</string>
     <string name="dashboard">Dashboard</string>
+    <string name="project_deadlines">Project Deadlines</string>
+    <string name="view_projects">View Projects</string>
     <string-array name="project_categories">
         <item>Construction</item>
         <item>Renovation</item>
