@@ -3,6 +3,9 @@
     <style name="Base.Theme.COMP3074_GroupProject_Bestulator" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/color1</item>
+        <item name="colorPrimaryVariant">@color/color2</item>
+        <item name="colorSecondary">@color/color3</item>
     </style>
 
     <style name="Theme.COMP3074_GroupProject_Bestulator" parent="Base.Theme.COMP3074_GroupProject_Bestulator" />

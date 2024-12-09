@@ -5,6 +5,7 @@
     android:id="@+id/navigation_second_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_img_2"
     android:orientation="vertical"
     tools:context=".SecondActivity">
 
@@ -13,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
+        app:titleTextColor="@color/white"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,20 +22,26 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="cursive"
         android:text="@string/project_deadlines"
         android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/color3"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <TextView
         android:id="@+id/monthSummaryText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
+        android:textColor="@color/black"
         android:layout_marginTop="8dp"
+        android:textFontWeight="@integer/material_motion_duration_short_1"
         android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@id/textView" />
 
